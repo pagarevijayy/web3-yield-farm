@@ -18,7 +18,7 @@ contract('TokenFarm', ([owner, investor]) => {
         // Load Contracts
         daiToken = await DaiToken.new()
         dappToken = await DappToken.new()
-        tokenFarm = await TokenFarm.new(dappToken.address, daiToken.address)
+        tokenFarm = await TokenFarm.new(daiToken.address, dappToken.address)
 
         // Transfer all Dapp tokens to farm (1 million)
         await dappToken.transfer(tokenFarm.address, toWeiTokens('1000000'))
@@ -65,7 +65,7 @@ contract('TokenFarm', ([owner, investor]) => {
             // Stake Mock DAI Tokens
             const stakeAmount = toWeiTokens('25');
             await daiToken.approve(tokenFarm.address, stakeAmount, { from: investor });
-            // await tokenFarm.stakeTokens( stakeAmount, { from: investor })
+            await tokenFarm.stakeTokens( stakeAmount, { from: investor })
 
 
             // check investor balance after staking

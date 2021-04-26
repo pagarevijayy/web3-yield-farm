@@ -6,6 +6,7 @@ import "./DappToken.sol";
 
 contract TokenFarm {
     string public name = "Dapp Token Farm";
+    address public owner;
     DaiToken public daiToken;
     DappToken public dappToken;
 
@@ -18,6 +19,7 @@ contract TokenFarm {
     constructor(DaiToken _daiToken, DappToken _dappToken) public {
         daiToken = _daiToken;
         dappToken = _dappToken;
+        owner = msg.sender;
     }
 
     // 1. Stake tokens (deposit)
@@ -42,6 +44,44 @@ contract TokenFarm {
     }
 
     // 2. Unstake tokens (withdraw)
+    function unstakeTokens() public {
+        // ideal: User must be allowed to unstake the amount she wants to. Instead of unstaking everything.
+
+        // fetch staked amount
+        uint256 stakedAmount = stakingBalance[msg.sender];
+
+        // amount must be greater than 0
+        require(
+            stakedAmount > 0,
+            "already staked amount must be greater than 0"
+        );
+
+        // transfer staked amount
+        daiToken.transfer(msg.sender, stakedAmount);
+
+        // reset staking balance
+        stakingBalance[msg.sender] = 0;
+
+        // update staking status
+        isStaking[msg.sender] = false;
+    }
 
     // 3. Issue tokens (interest)
+    function issueTokens() public {
+        // only owner can issue tokens
+        require(msg.sender == owner, "caller must be owner");
+
+        //Issue tokens to all stakers
+        for (uint256 index = 0; index < stakers.length; index++) {
+            address recipient = stakers[index];
+            uint256 balance = stakingBalance[recipient];
+            if(balance > 0){
+                // ideal: should make sure the farm has sufficient tokens before dispatching
+                dappToken.transfer(recipient, balance);
+            }
+        }
+
+    }
 }
+
+// Remark: Logic should be updated to better map the real world staking scenarios. Current implementation is limited.

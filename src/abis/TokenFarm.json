@@ -965,7 +965,7 @@
                             "name": "this",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 654,
+                            "referencedDeclaration": 656,
                             "src": "902:4:3",
                             "typeDescriptions": {
                               "typeIdentifier": "t_contract$_TokenFarm_$621",
@@ -3583,7 +3583,7 @@
                             "name": "this",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 654,
+                            "referencedDeclaration": 656,
                             "src": "902:4:3",
                             "typeDescriptions": {
                               "typeIdentifier": "t_contract$_TokenFarm_$621",
@@ -5447,12 +5447,13 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0x2a95CD7c091312157BD91E2260a6f32a3e78A438",
-      "transactionHash": "0x0d31da95081e874e5d091b1a27fff6cf587824027464db767bc0ad8681008904"
+      "address": "0x451138B235f8E948F2Ff492A28293ae288e7241A",
+      "transactionHash": "0xa15bf2bb34db08b6f52766db4c5dd107dfd79c082f7ef1f5cd9437784caf5d17"
     }
   },
   "schemaVersion": "3.0.23",
-  "updatedAt": "2021-04-26T12:16:45.155Z",
+  "updatedAt": "2021-04-26T14:54:03.062Z",
+  "networkType": "ethereum",
   "devdoc": {
     "methods": {}
   },
